@@ -93,6 +93,7 @@ class Project(object):
         """
         Construct a Project from a config.Config object.
         """
+        log.warning('!!!project from_config')
         extra_labels = extra_labels or []
         use_networking = (config_data.version and config_data.version != V1)
         networks = build_networks(name, config_data, client)
