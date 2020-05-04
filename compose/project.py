@@ -106,6 +106,7 @@ class Project(object):
 
         for service_dict in config_data.services:
             service_dict = dict(service_dict)
+            log.warning('!!!! project from_config {}'.format(service_dict.get('name', '')))
             if use_networking:
                 service_networks = get_networks(service_dict, networks)
             else:
