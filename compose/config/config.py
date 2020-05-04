@@ -393,6 +393,7 @@ def load(config_details, compatibility=False, interpolate=True):
         process_config_file(config_file, config_details.environment, interpolate=interpolate)
         for config_file in config_details.config_files
     ]
+    log.warning('!!!!!! 1 {}'.format(processed_files))
     config_details = config_details._replace(config_files=processed_files)
 
     main_file = config_details.config_files[0]
@@ -408,7 +409,9 @@ def load(config_details, compatibility=False, interpolate=True):
     configs = load_mapping(
         config_details.config_files, 'get_configs', 'Config', config_details.working_dir
     )
+    log.warning('!!!!!! 14 {}'.format(config_details))
     service_dicts = load_services(config_details, main_file, compatibility)
+    log.warning('!!!!!! 15 {}'.format(service_dicts))
 
     if main_file.version != V1:
         for service_dict in service_dicts:
