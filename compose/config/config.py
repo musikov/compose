@@ -494,8 +494,9 @@ def load_services(config_details, config_file, compatibility=False):
         ])
 
     def merge_services(base, override):
+        log.warning('!!!!!!!!!MERGE SERVICES a\n{}\n{}'.format(base, override))
         all_service_names = set(base) | set(override)
-        log.warning('!!!!!!!!!MERGE SERVICES\n{}\n{}\n{}'.format(set(base), set(override), all_service_names))
+        log.warning('!!!!!!!!!MERGE SERVICES b\n{}\n{}\n{}'.format(set(base), set(override), all_service_names))
         return {
             name: merge_service_dicts_from_files(
                 base.get(name, {}),
