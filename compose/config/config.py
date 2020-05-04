@@ -9,6 +9,7 @@ import re
 import string
 import sys
 from collections import namedtuple
+from itertools import chain
 from operator import attrgetter
 
 import six
@@ -27,6 +28,7 @@ from ..utils import json_hash
 from ..utils import parse_bytes
 from ..utils import parse_nanoseconds_int
 from ..utils import splitdrive
+from ..utils import unique_everseen
 from ..version import ComposeVersion
 from .environment import env_vars_from_file
 from .environment import Environment
@@ -492,7 +494,7 @@ def load_services(config_details, config_file, compatibility=False, interpolate=
         ])
 
     def merge_services(base, override):
-        all_service_names = set(base) | set(override)
+        all_service_names = unique_everseen(chain(base, override))
         return {
             name: merge_service_dicts_from_files(
                 base.get(name, {}),
