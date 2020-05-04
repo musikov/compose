@@ -410,8 +410,8 @@ def load(config_details, compatibility=False, interpolate=True):
         config_details.config_files, 'get_configs', 'Config', config_details.working_dir
     )
     log.warning('!!!!!! 14 {}'.format(config_details))
-    service_dicts = load_services(config_details, main_file, compatibility)
-    log.warning('!!!!!! 15 {}'.format(service_dicts))
+    service_dicts = load_services(config_details, main_file, compatibility) ## problem when cconcating 2 files order fails
+    log.warning('!!!!!! 15 {}'.format(service_dicts)) ## --- problem
 
     if main_file.version != V1:
         for service_dict in service_dicts:
@@ -495,6 +495,7 @@ def load_services(config_details, config_file, compatibility=False):
 
     def merge_services(base, override):
         all_service_names = set(base) | set(override)
+        log.warning('!!!!!!!!!MERGE SERVICES {}'.format(all_service_names))
         return {
             name: merge_service_dicts_from_files(
                 base.get(name, {}),
