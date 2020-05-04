@@ -695,8 +695,10 @@ class Project(object):
             repo, tag, sep = parse_repository_tag(service.image_name)
             service_image_name = sep.join((repo, tag)) if tag else sep.join((repo, 'latest'))
 
-            if service_image_name not in unique_images:
-                service.push(ignore_push_failures)
+            if (
+                    service_image_name not in unique_images and
+                    service.push(ignore_push_failures)
+            ):
                 unique_images.add(service_image_name)
 
     def _labeled_containers(self, stopped=False, one_off=OneOffFilter.exclude):
