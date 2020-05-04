@@ -141,6 +141,7 @@ def get_project(project_dir, config_path=None, project_name=None, verbose=False,
     log.warning('!!! get_project 1')
     log.warning(config_details)
     config_data = config.load(config_details, compatibility, interpolate)
+    log.warning('!!!!!! get_projecct 2 {}'.format(list(dict(c).get('name','') for c in config_data.services)))
 
     api_version = environment.get(
         'COMPOSE_API_VERSION',
