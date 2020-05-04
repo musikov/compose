@@ -134,14 +134,14 @@ def get_project(project_dir, config_path=None, project_name=None, verbose=False,
                 compatibility=False, interpolate=True, environment_file=None):
     if not environment:
         environment = Environment.from_env_file(project_dir)
-    config_details = config.find(project_dir, config_path, environment, override_dir)
-    project_name = get_project_name(
-        config_details.working_dir, project_name, environment
-    )
-    log.warning('!!! get_project 1')
-    log.warning(config_details)
-
     for z in range(4):
+        config_details = config.find(project_dir, config_path, environment, override_dir)
+        project_name = get_project_name(
+            config_details.working_dir, project_name, environment
+        )
+        log.warning('!!! get_project 1')
+        log.warning(config_details)
+
         config_data = config.load(config_details, compatibility, interpolate)
         log.warning('!!!!!! get_projecct 2 {}'.format(list(dict(c).get('name','') for c in config_data.services)))
 
