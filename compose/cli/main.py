@@ -748,6 +748,7 @@ class TopLevelCommand(object):
         )
 
     def push(self, options):
+        log.info('cli.push 1')
         """
         Pushes images for services.
 
