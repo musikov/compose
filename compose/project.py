@@ -693,6 +693,7 @@ class Project(object):
         unique_images = set()
         for service in self.get_services(service_names, include_deps=False):
             log.info('!!!project.push 2...')
+            log.info(service)
             # Considering <image> and <image:latest> as the same
             repo, tag, sep = parse_repository_tag(service.image_name)
             service_image_name = sep.join((repo, tag)) if tag else sep.join((repo, 'latest'))
