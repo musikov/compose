@@ -138,6 +138,8 @@ def get_project(project_dir, config_path=None, project_name=None, verbose=False,
     project_name = get_project_name(
         config_details.working_dir, project_name, environment
     )
+    log.warning('!!! get_project 1')
+    log.warning(config_details)
     config_data = config.load(config_details, compatibility, interpolate)
 
     api_version = environment.get(
