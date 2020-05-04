@@ -1251,6 +1251,7 @@ class Service(object):
 
     def push(self, ignore_push_failures=False):
         log.info('!!!service.push 1')
+        log.info(self.options)
         if 'image' not in self.options or 'build' not in self.options:
             return
 
