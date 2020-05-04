@@ -143,7 +143,7 @@ def get_project(project_dir, config_path=None, project_name=None, verbose=False,
     log.warning(config_details)
 
     srvs = config_details.config_files[0].config.get('services')
-    log.warning('!!! get_project 1.5 {}'.format(list(k for k,v in srvs)))
+    log.warning('!!! get_project 1.5 {}'.format(list(k for k in srvs)))
 
     config_data = config.load(config_details, compatibility, interpolate)
     log.warning('!!!!!! get_projecct 2 {}'.format(list(dict(c).get('name','') for c in config_data.services)))
