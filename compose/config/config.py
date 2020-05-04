@@ -509,6 +509,7 @@ def load_services(config_details, config_file, compatibility=False):
     ]
 
     service_config = service_configs[0]
+    log.warning('service_config 0 {}'.format(service_config))
     for next_config in service_configs[1:]:
         service_config = merge_services(service_config, next_config)
 
