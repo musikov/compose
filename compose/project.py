@@ -70,6 +70,8 @@ class Project(object):
     A collection of services.
     """
     def __init__(self, name, services, client, networks=None, volumes=None, config_version=None):
+        log.warning('!!!project init')
+        log.warning(s.name for s in services)
         self.name = name
         self.services = services
         self.client = client
@@ -188,6 +190,8 @@ class Project(object):
         """
         if service_names is None or len(service_names) == 0:
             service_names = self.service_names
+            log.warning('!!!get_services 1')
+            log.warning(service_names)
 
         unsorted = [self.get_service(name) for name in service_names]
         services = [s for s in self.services if s in unsorted]
