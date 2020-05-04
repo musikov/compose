@@ -748,7 +748,6 @@ class TopLevelCommand(object):
         )
 
     def push(self, options):
-        log.info('cli.push 1')
         """
         Pushes images for services.
 
@@ -757,6 +756,7 @@ class TopLevelCommand(object):
         Options:
             --ignore-push-failures  Push what it can and ignores images with push failures.
         """
+        log.info('cli.push 1')
         self.project.push(
             service_names=options['SERVICE'],
             ignore_push_failures=options.get('--ignore-push-failures')
