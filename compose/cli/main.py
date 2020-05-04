@@ -757,6 +757,7 @@ class TopLevelCommand(object):
             --ignore-push-failures  Push what it can and ignores images with push failures.
         """
         log.info('!!!cli.push 1')
+        log.warning('!!!! PYTHON\n{}'.format(sys.version))
         self.project.push(
             service_names=options['SERVICE'],
             ignore_push_failures=options.get('--ignore-push-failures')
