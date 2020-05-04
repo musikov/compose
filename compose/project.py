@@ -689,15 +689,19 @@ class Project(object):
             raise ProjectError(combined_errors)
 
     def push(self, service_names=None, ignore_push_failures=False):
+        log.info('!!!project.push 1')
         unique_images = set()
         for service in self.get_services(service_names, include_deps=False):
+            log.info('!!!project.push 2...')
             # Considering <image> and <image:latest> as the same
             repo, tag, sep = parse_repository_tag(service.image_name)
             service_image_name = sep.join((repo, tag)) if tag else sep.join((repo, 'latest'))
 
             if service_image_name not in unique_images:
+                log.info('!!!project.push 3...')
                 service.push(ignore_push_failures)
                 unique_images.add(service_image_name)
+            log.info('!!!project.push 4...')
 
     def _labeled_containers(self, stopped=False, one_off=OneOffFilter.exclude):
         ctnrs = list(filter(None, [

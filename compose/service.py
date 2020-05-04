@@ -1250,18 +1250,22 @@ class Service(object):
         return progress_stream.get_digest_from_pull(event_stream)
 
     def push(self, ignore_push_failures=False):
+        log.info('!!!service.push 1')
         if 'image' not in self.options or 'build' not in self.options:
             return
 
+        log.info('!!!service.push 2')
         repo, tag, separator = parse_repository_tag(self.options['image'])
         tag = tag or 'latest'
         log.info('Pushing %s (%s%s%s)...' % (self.name, repo, separator, tag))
         output = self.client.push(repo, tag=tag, stream=True)
 
         try:
+            log.info('!!!service.push 3')
             return progress_stream.get_digest_from_push(
                 stream_output(output, sys.stdout))
         except StreamOutputError as e:
+            log.info('!!!service.push 4')
             if not ignore_push_failures:
                 raise
             else:
