@@ -846,6 +846,23 @@ class ProjectTest(unittest.TestCase):
             project.push()
             assert fake_push.call_count == 2
 
+    def test_push_duplicate_image(self):
+        svc_no_build = Service(
+            'busy1', image='busybox:latest',
+            client=self.mock_client)
+        svc_with_build = Service(
+            'busy2', image='busybox:latest',
+            build='.',
+            client=self.mock_client)
+        project = Project(
+            'composetest', [svc_no_build, svc_with_build], self.mock_client
+        )
+        project.push()
+        self.mock_client.push.assert_called_once_with(
+            'busybox',
+            tag='latest',
+            stream=True)
+
     def test_get_secrets_no_secret_def(self):
         service = 'foo'
         secret_source = 'bar'
